@@ -103,4 +103,92 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+{
+	id: 'oppenheimer',
+	nazev: 'Oppenheimer',
+	plakat: {
+		url: 'https://image.pmgstatic.com/cache/resized/w600h1000/files/images/film/posters/167/617/167617369_t19azl.jpg?h360',
+		sirka: 420,
+		vyska: 592,
+	},
+	ochutnavka: 'V době, kdy Druhá světová válka ještě vypadala nerozhodně.',
+	popis:
+		'V době, kdy Druhá světová válka ještě vypadala nerozhodně, probíhal na dálku dramatický souboj mezi Spojenými státy a Německem o to, komu se dřív podaří zkonstruovat atomovou bombu a získat nad nepřítelem rozhodující převahu. V Americe se tajný výzkum skrýval pod označením Projekt Manhattan a jedním z jeho klíčových aktérů byl astrofyzik Robert Oppenheimer. Pod obrovským časovým tlakem se s týmem dalších vědců pokoušel sestrojit vynález, který má potenciál zničit celý svět, ale bez jehož včasného dokončení se tentýž svět nepodaří zachránit',
+	premiera: '2023-07-20',
+},
 ]
+
+/*5. Detail filmu-DONE*/
+
+const idFilmu = location.hash.substring(1)
+	document.body.innerHTML+= idFilmu
+
+let film;
+	filmy.forEach((porovnavanyFilm) => {
+    	if (porovnavanyFilm.id === idFilmu) {
+		film = porovnavanyFilm
+		}
+	});
+
+let detailFilmu = document.querySelector('#detail-filmu')
+let photo = detailFilmu.querySelector('img')
+	photo.src = film.plakat.url
+	photo.width = film.plakat.sirka
+	photo.height = film.plakat.vyska
+
+detailFilmu.querySelector('.card-title').textContent = film.nazev
+detailFilmu.querySelector('.card-text').textContent = film.popis
+
+/*6. Premiéra- DONE*/
+
+const premiere = document.querySelector("#premiera")
+const premiereDate = dayjs(film.premiera).format("D.M.YYYY")
+const today = dayjs()
+const howManydays = dayjs(film.premiera).diff(dayjs(), "days")
+let premiereDays;
+	if (howManydays < 0) {
+		premiereDays = `bylo před ${-howManydays} dny.`
+	} else if (howManydays > 0) {
+		premiereDays = `je za ${howManydays} dní.`
+	} else {
+		premiereDays = `je dnes.`
+	}
+
+premiere.innerHTML = `Premiéra <strong>${premiereDate}</strong>, což ${premiereDays}`
+
+/*7. Hodnocení*/
+
+const highlightStars = (number) => {
+	number >= 1 <= 5
+	const stars = document.querySelector('.stars');
+		stars.forEach((star,index) => {
+			if (index + 1 <= number) {
+				star.classList.remove('far');
+           		star.classList.add('fas');
+			} else {
+				star.classList.remove('fas');
+            	star.classList.add('far');
+			};
+		});
+}
+
+stars.addEventlistener(highlightStars, () => {
+	let clickedStarIndex = 0;
+		document.querySelectorAll('.fa-star').forEach = (star, index) => {
+			star.addEventListener('click', () => {
+				clickedStarIndex = index + 1;
+				highlightStars(clickedStarIndex);
+			});
+		};
+		document.querySelectorAll('.fa-star').forEach = (star, index) =>{
+			star.addEventListener('mouseenter', () => {
+				highlightStars(index + 1);
+			});
+			star.addEventListener('mouseleave', () => {
+				highlightStars(clickedStarIndex);
+			});
+		};
+});
+	
+highlightStars()
+
