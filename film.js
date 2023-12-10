@@ -159,36 +159,38 @@ premiere.innerHTML = `Premiéra <strong>${premiereDate}</strong>, což ${premier
 /*7. Hodnocení*/
 
 const highlightStars = (number) => {
-	number >= 1 <= 5
-	const stars = document.querySelector('.stars');
-		stars.forEach((star,index) => {
-			if (index + 1 <= number) {
-				star.classList.remove('far');
-           		star.classList.add('fas');
-			} else {
-				star.classList.remove('fas');
-            	star.classList.add('far');
-			};
-		});
-}
-
-stars.addEventlistener(highlightStars, () => {
-	let clickedStarIndex = 0;
-		document.querySelectorAll('.fa-star').forEach = (star, index) => {
-			star.addEventListener('click', () => {
-				clickedStarIndex = index + 1;
-				highlightStars(clickedStarIndex);
-			});
-		};
-		document.querySelectorAll('.fa-star').forEach = (star, index) =>{
-			star.addEventListener('mouseenter', () => {
-				highlightStars(index + 1);
-			});
-			star.addEventListener('mouseleave', () => {
-				highlightStars(clickedStarIndex);
-			});
-		};
-});
+	const stars = document.querySelectorAll('.fa-star');
 	
-highlightStars()
+	stars.forEach((star,index) => {
+		if (index < number) {
+			star.classList.remove('far');
+           	star.classList.add('fas');
+		} else {
+            star.classList.add('far');
+			star.classList.remove('fas');
+		};
+	});
+};
 
+const starSymbol = document.querySelectorAll('.button-star')
+
+starSymbol.forEach((button, index) => {
+	button.addEventListener('click', () => {
+		const clickedStarNumber = index + 1;
+		highlightStars(clickedStarNumber);
+	});
+});
+
+starSymbol.forEach((button,index) => {
+	button.addEventListener('mouseenter', () => {
+		const clickedStarNumber = index + 1;
+		highlightStars(clickedStarNumber);
+	});
+});
+
+starSymbol.forEach((button,index) => {
+	button.addEventListener('mouseleave', () => {
+		const clickedStarNumber = index + 1;
+		highlightStars(clickedStarNumber);
+	});
+});
