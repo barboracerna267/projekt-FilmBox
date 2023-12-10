@@ -119,7 +119,7 @@ const filmy = [
 ]
 
 /*4. Seznam filmů- DONE*/
-const seznamFilmu = document.querySelector('#seznam-filmu');
+const seznamFilmu = document.querySelector('#seznam-filmu')
 	seznamFilmu.innerHTML = ''
 	
 filmy.forEach((film) => {

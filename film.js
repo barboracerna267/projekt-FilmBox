@@ -128,7 +128,7 @@ let film;
     	if (porovnavanyFilm.id === idFilmu) {
 		film = porovnavanyFilm
 		}
-	});
+	})
 
 let detailFilmu = document.querySelector('#detail-filmu')
 let photo = detailFilmu.querySelector('img')
@@ -156,41 +156,41 @@ let premiereDays;
 
 premiere.innerHTML = `Premiéra <strong>${premiereDate}</strong>, což ${premiereDays}`
 
-/*7. Hodnocení*/
+/*7. Hodnocení-DONE*/
 
 const highlightStars = (number) => {
-	const stars = document.querySelectorAll('.fa-star');
+	const stars = document.querySelectorAll('.fa-star')
 	
 	stars.forEach((star,index) => {
 		if (index < number) {
-			star.classList.remove('far');
-           	star.classList.add('fas');
+			star.classList.remove('far')
+           	star.classList.add('fas')
 		} else {
-            star.classList.add('far');
-			star.classList.remove('fas');
-		};
-	});
-};
+            star.classList.add('far')
+			star.classList.remove('fas')
+		}
+	})
+}
 
 const starSymbol = document.querySelectorAll('.button-star')
 
 starSymbol.forEach((button, index) => {
 	button.addEventListener('click', () => {
-		const clickedStarNumber = index + 1;
-		highlightStars(clickedStarNumber);
-	});
-});
+		const clickedStarNumber = index + 1
+		highlightStars(clickedStarNumber)
+	})
+})
 
 starSymbol.forEach((button,index) => {
 	button.addEventListener('mouseenter', () => {
-		const clickedStarNumber = index + 1;
-		highlightStars(clickedStarNumber);
-	});
-});
+		const clickedStarNumber = index + 1
+		highlightStars(clickedStarNumber)
+	})
+})
 
 starSymbol.forEach((button,index) => {
 	button.addEventListener('mouseleave', () => {
-		const clickedStarNumber = index + 1;
-		highlightStars(clickedStarNumber);
-	});
-});
+		const clickedStarNumber = index + 1
+		highlightStars(clickedStarNumber)
+	})
+})
